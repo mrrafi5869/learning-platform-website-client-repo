@@ -38,6 +38,10 @@ function App() {
           path: "/blog",
           element: <Blog></Blog>
         },
+        {
+          path: "/course:id",
+          element: <Blog></Blog>
+        },
       ]
     }
   ])

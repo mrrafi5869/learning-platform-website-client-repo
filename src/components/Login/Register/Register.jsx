@@ -44,6 +44,17 @@ const Register = () => {
             </div>
             <div className="form-control">
               <label className="label">
+                <span className="label-text">Phot URl</span>
+              </label>
+              <input
+                type="text"
+                name="photo"
+                placeholder="Photo Url"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
@@ -64,14 +75,17 @@ const Register = () => {
                 className="input input-bordered"
               />
               <label className="label">
-                <Link
-                  to="/register"
-                  className="label-text-alt link link-hover"
-                ></Link>
+                <>
+                Already have an Account?Please
+                 <Link
+                  to="/login"
+                  className="label-text-alt link link-hover text-lg"
+                >Login</Link>
+                </>
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-primary">Register</button>
             </div>
           </form>
         </div>
