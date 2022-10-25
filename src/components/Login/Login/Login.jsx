@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-    const handleSubmit = event => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+  };
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col">
@@ -39,9 +39,10 @@ const Login = () => {
                 className="input input-bordered"
               />
               <label className="label">
-                <Link to='/register' className="label-text-alt link link-hover">
-                    
-                </Link>
+                <Link
+                  to="/register"
+                  className="label-text-alt link link-hover"
+                ></Link>
               </label>
             </div>
             <div className="form-control mt-6">

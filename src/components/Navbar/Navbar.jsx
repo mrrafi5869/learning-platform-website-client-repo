@@ -28,23 +28,23 @@ const Navbar = () => {
       <div className="flex-none">
         <ul className="menu menu-horizontal p-0 mr-4">
           <li className="font-semibold">
-            <Link>Course</Link>
+            <Link to='/course'>Course</Link>
           </li>
           <li className="font-semibold">
-            <Link>FAQ</Link>
+            <Link to='/faq'>FAQ</Link>
           </li>
           <li className="font-semibold">
-            <Link>Blog</Link>
+            <Link to='/blog'>Blog</Link>
           </li>
           <li className="font-semibold">
-            <Link>Login</Link>
+            <Link to='/login'>Login</Link>
           </li>
           <li className="font-semibold">
-            <Link>Register</Link>
+            <Link to='/register'>Register</Link>
           </li>
         </ul>
       </div>
-        <button className="font-semibold mr-10 bg-blue-600 text-white py-2 px-4 rounded-lg ease-in duration-100 hover:bg-sky-400" onClick={toggleTheme}>Dark</button>
+        <button className="font-semibold mr-10 bg-blue-600 text-white py-2 px-4 rounded-lg ease-in duration-100 hover:bg-sky-400" onClick={toggleTheme}>Light</button>
     </div>
     </div>
   );
