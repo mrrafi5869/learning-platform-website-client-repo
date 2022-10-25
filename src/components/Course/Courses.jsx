@@ -12,7 +12,7 @@ const Courses = () => {
         .then(data => setCourses(data));
     } , [])
     return (
-        <div>
+        <div className='w-3/4 mx-auto grid grid-cols-3'>
             {
                 courses.map(course => <Course
                     key={course.id}
