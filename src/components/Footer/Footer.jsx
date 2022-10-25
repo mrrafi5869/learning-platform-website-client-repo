@@ -12,7 +12,7 @@ const Footer = () => {
         </div>
         <div>
           <div className="grid grid-flow-col gap-4">
-            <Link>
+            <Link to=''>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
