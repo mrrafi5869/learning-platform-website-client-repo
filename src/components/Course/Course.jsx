@@ -13,7 +13,7 @@ const Course = ({ course }) => {
         <p className="text-sky-500 font-extrabold text-lg">Price: Only {price}</p>
         <p className="text-amber-500 font-bold">This Course will start at: {date}</p>
         <div className="card-actions justify-end">
-          <Link to={`/category/${id}`} className="btn btn-primary">Details</Link>
+          <Link to={`/course/${id}`} className="btn btn-primary">Details</Link>
         </div>
       </div>
     </div>
