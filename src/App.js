@@ -41,7 +41,7 @@ function App() {
         },
         {
           path: "/course/:id",
-          loader: ({params}) => fetch(`http://localhost:5000/course/${params.id}`),
+          loader: ({params}) => fetch(`http://localhost:4999/course/${params.id}`),
           element: <CourseDetails></CourseDetails >
         },
       ]

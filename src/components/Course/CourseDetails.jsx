@@ -1,9 +1,9 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const CourseDetails = () => {
   const course = useLoaderData();
-  const {img, name, sell, lesson, date} = course;
+  const {img, name, sell, lesson} = course;
   return (
     <div className="card w-96 bg-base-100 shadow-xl mx-auto my-60">
       <figure>
@@ -17,7 +17,7 @@ const CourseDetails = () => {
         <p>{sell}</p>
         <div className="card-actions justify-end">
           <div className="badge badge-outline">{lesson}</div>
-          <div className="badge badge-outline">{date}</div>
+          <Link to = '/course'className="badge badge-outline bg-gray-500 text-white">Back</Link>
         </div>
       </div>
     </div>

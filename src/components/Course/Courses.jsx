@@ -8,7 +8,7 @@ const Courses = () => {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/course')
+        fetch('http://localhost:4999/course')
         .then(res => res.json())
         .then(data => setCourses(data));
     } , [])
@@ -19,6 +19,7 @@ const Courses = () => {
                     courses.map(course => <Link
                         key={course.id}
                         className = "bg-black text-white my-3 p-5 w-64 rounded-md font-semibold text-center ml-7 block"
+                        to={`/course/${course.id}`}
                     >{course.name}</Link>)
                 }
             </div>
