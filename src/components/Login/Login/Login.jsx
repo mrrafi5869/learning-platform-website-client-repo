@@ -1,15 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 
 
-
 const Login = () => {
-  const {googleSignIn} = useContext(AuthContext);
+  const {googleSignIn, signIn} = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,6 +17,16 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    signIn(email, password)
+    .then(result => {
+      const user = result.user;
+      console.log(user);
+      navigate('/course')
+      form.reset();
+    })
+    .catch(error => {
+      console.error(error);
+    })
   };
 
   const handleGoogleSignIn = () => {
@@ -68,7 +78,7 @@ const Login = () => {
                   Don't have an Account?Please
                   <Link
                     to="/register"
-                    className="label-text-alt link link-hover text-lg"
+                    className="label-text-alt link link-hover text-lg font-bold underline text-blue-600"
                   >Register</Link>
                   </>
                 </label>
