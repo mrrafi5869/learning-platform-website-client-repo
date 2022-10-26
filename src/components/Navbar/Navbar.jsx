@@ -6,7 +6,7 @@ import { FaUser } from "react-icons/fa";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [theme, setTheme] = useState("light");
   const toggleTheme = () => {
     if (theme === "light") {
@@ -18,6 +18,17 @@ const Navbar = () => {
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
+
+  const handleLogOut = () => {
+    logOut()
+    .then(result => {
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(error => {
+      console.error(error);
+    })
+  }
 
   return (
     <div className={`Navbar ${theme}`}>
@@ -57,7 +68,7 @@ const Navbar = () => {
           <h1 className="mr-2 font-semibold text-lg">
             {user?.uid ? (
             <>
-              <button className="btn btn-sm mr-4">Logout</button>
+              <button className="btn btn-sm mr-4" onClick = {handleLogOut}>Logout</button>
               <span>{user?.displayName}</span>
             </>
             ) : (
