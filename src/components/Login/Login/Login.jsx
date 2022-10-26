@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle, FaGithub } from 'react-icons/fa';
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const {googleSignIn} = useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -10,13 +13,18 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
   };
+
+  const hangleGoogleSignIn = () => {
+      
+  }
+
   return (
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
             <div className="flex space-x-56">
               <button className="btn btn-outline"><FaGithub className="mr-2 text-lg text-gray-500"></FaGithub> Github</button>
-              <button className="btn btn-outline btn-primary"><FaGoogle className="mr-2 text-lg text-blue-500"></FaGoogle>Google</button>
+              <button className="btn btn-outline btn-primary"><FaGoogle className="mr-2 text-lg text-blue-500" onClick={hangleGoogleSignIn}></FaGoogle>Google</button>
             </div>
             <h1 className="text-5xl font-bold">Please Login now!</h1>
           </div>
