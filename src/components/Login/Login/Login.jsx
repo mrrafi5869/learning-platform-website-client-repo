@@ -1,14 +1,21 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { useState } from "react";
 
 
 const Login = () => {
-  const {googleSignIn, signIn} = useContext(AuthContext);
-  const provider = new GoogleAuthProvider();
+  const {googleSignIn, githubSignIn, signIn} = useContext(AuthContext);
+  const [error, setError] = useState('');
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/';
+
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -20,24 +27,39 @@ const Login = () => {
     signIn(email, password)
     .then(result => {
       const user = result.user;
+      setError("");
       console.log(user);
-      navigate('/course')
+      navigate(from, {replace: true});
       form.reset();
     })
     .catch(error => {
-      console.error(error);
+      setError(error.message);
     })
   };
 
   const handleGoogleSignIn = () => {
-      googleSignIn(provider)
+      googleSignIn(googleProvider)
       .then(result => {
         const user = result.user;
+        setError("")
         console.log(user);
       })
       .catch(error => {
-        console.error(error);
+        setError(error.message);
       })
+  }
+
+  const handleGithubSingIn = () => {
+    githubSignIn(githubProvider)
+    .then(result => {
+      const user = result.user;
+      setError("");
+      console.log(user);
+    })
+    .catch(error => {
+      console.log(error);
+      setError(error);
+    })
   }
 
   return (
@@ -45,7 +67,7 @@ const Login = () => {
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
             <div className="flex space-x-56">
-              <button className="btn btn-outline"><FaGithub className="mr-2 text-lg text-gray-500"></FaGithub> Github</button>
+              <button className="btn btn-outline" onClick={handleGithubSingIn}><FaGithub className="mr-2 text-lg text-gray-500"></FaGithub> Github</button>
               <button className="btn btn-outline btn-primary" onClick={handleGoogleSignIn}><FaGoogle className="mr-2 text-lg text-blue-500"></FaGoogle>Google</button>
             </div>
             <h1 className="text-5xl font-bold">Please Login now!</h1>
@@ -82,7 +104,7 @@ const Login = () => {
                   >Register</Link>
                   </>
                 </label>
-                <h1 className="text-red-500"></h1>
+                <p className="text-red-500">{error}</p>
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>

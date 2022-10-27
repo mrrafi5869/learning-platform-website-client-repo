@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
-  const {createUser} = useContext(AuthContext);
+  const {createUser, updateUserProfile} = useContext(AuthContext);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -14,18 +16,33 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, email, password,photo);
-
     createUser(email, password)
     .then(result => {
         const user = result.user;
+        handleUpdateUserProfile(name, photo)
+        setError("");
         console.log(user);
         form.reset();
         navigate("/course");
     })
     .catch(error => {
-        console.error(error);
+        setError(error.message);
     })
   };
+
+
+  const handleUpdateUserProfile = (name, photoURL) => {
+    const profile = {
+        displayName: name,
+        photoURL: photoURL
+    }
+
+    updateUserProfile(profile)
+        .then(() => { })
+        .catch(error => console.error(error));
+}
+
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col">
@@ -88,6 +105,7 @@ const Register = () => {
                 >Login</Link>
                 </>
               </label>
+              <p className="text-red-400">{error}</p>
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Register</button>

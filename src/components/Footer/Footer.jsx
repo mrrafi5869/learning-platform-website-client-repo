@@ -6,7 +6,7 @@ const Footer = () => {
     <div>
       <footer className="footer footer-center p-10 bg-primary text-primary-content">
         <div>
-        <button className="btn btn-outline btn-success">Buy Now</button>
+        <input type="text" placeholder="For more information.Please text me." className="input input-bordered input-success w-full max-w-xs text-black" />
 
           <p>Copyright © 2022 - All right reserved</p>
         </div>

@@ -4,7 +4,7 @@ import jsPDF from 'jspdf'
 
 const CourseDetails = () => {
   const course = useLoaderData();
-  const {img, name, sell, lesson} = course;
+  const {id, img, name, sell, lesson} = course;
 
   const pdfGenerate = () => {
     let doc = new jsPDF('landscape', "px", "a4", 'false');
@@ -38,9 +38,9 @@ const CourseDetails = () => {
         <div className="card-actions justify-end">
           <div className="badge badge-outline">{lesson}</div>
           <button className="badge badge-outline hover:bg-gray-400" onClick={pdfGenerate}>Download</button>
-          <Link to = '/course'className="badge badge-outline bg-gray-500 text-white">Back</Link>
+          <Link to = '/course' className="badge badge-outline bg-gray-500 text-white">Back</Link>
         </div>
-        <button className="btn">Premium Course</button>
+        <Link to={`/premiumCourse/${id}`} className="btn">Premium Course</Link>
       </div>
     </div>
   );
