@@ -1,17 +1,25 @@
 import React from "react";
 import { useEffect } from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider/AuthProvider";
 import Course from "./Course";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
-
+  const {loading} = useContext(AuthContext);
+  
   useEffect(() => {
     fetch("https://learning-platform-website-server.vercel.app/course")
       .then((res) => res.json())
       .then((data) => setCourses(data));
   }, []);
+  if(loading){
+    return <div className="flex justify-center items-center my-36">
+      <button className="btn btn-square loading"></button>
+    </div>
+  }
   return (
     <div className="lg:flex mx-20 align-middle my-12">
       <div>

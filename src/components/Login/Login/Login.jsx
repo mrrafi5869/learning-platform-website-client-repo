@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 
 const Login = () => {
@@ -42,7 +43,17 @@ const Login = () => {
       .then(result => {
         const user = result.user;
         setError("")
-        console.log(user);
+        toast.success('Successfully Login', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
+        navigate("/");
       })
       .catch(error => {
         setError(error.message);
@@ -54,11 +65,21 @@ const Login = () => {
     .then(result => {
       const user = result.user;
       setError("");
-      console.log(user);
+      toast.success('Successfully Login', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+      navigate("/");
     })
     .catch(error => {
       console.log(error);
-      setError(error);
+      setError(error.message);
     })
   }
 
@@ -66,10 +87,7 @@ const Login = () => {
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
-            <div className="flex space-x-56">
-              <button className="btn btn-outline" onClick={handleGithubSingIn}><FaGithub className="mr-2 text-lg text-gray-500"></FaGithub> Github</button>
-              <button className="btn btn-outline btn-primary" onClick={handleGoogleSignIn}><FaGoogle className="mr-2 text-lg text-blue-500"></FaGoogle>Google</button>
-            </div>
+            
             <h1 className="text-5xl font-bold">Please Login now!</h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -108,6 +126,11 @@ const Login = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
+                <p className="text-center text-sky-400 lowercase font-serif">Login With Social Media</p>
+              <div className="flex mt-4 mx-auto">
+              <button onClick={handleGithubSingIn}><FaGithub className="mr-5 text-3xl text-gray-500"></FaGithub></button>
+              <button onClick={handleGoogleSignIn}><FaGoogle className="mr-5 text-3xl text-blue-500"></FaGoogle></button>
+            </div>
               </div>
             </form>
           </div>

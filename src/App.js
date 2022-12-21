@@ -11,6 +11,7 @@ import Register from "./components/Login/Register/Register";
 import PremiumCourse from "./components/PremiumCourse/PremiumCourse";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Login></Login>,
+          element: <Courses></Courses>,
         },
         {
           path: "/register",
