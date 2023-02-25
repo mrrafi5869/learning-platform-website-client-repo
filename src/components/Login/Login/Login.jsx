@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 
 const Login = () => {
-  const {googleSignIn, githubSignIn, signIn} = useContext(AuthContext);
+  const {googleSignIn, githubSignIn, signIn, theme} = useContext(AuthContext);
   const [error, setError] = useState('');
   const location = useLocation();
 
@@ -84,13 +84,13 @@ const Login = () => {
   }
 
   return (
-      <div className="hero min-h-screen bg-base-200">
+      <div className={`hero min-h-screen bg-base-200`}>
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
             
             <h1 className="text-5xl font-bold">Please Login now!</h1>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className={`card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>
             <form onSubmit={handleSubmit} className="card-body">
               <div className="form-control">
                 <label className="label">

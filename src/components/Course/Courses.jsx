@@ -8,7 +8,7 @@ import Course from "./Course";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
-  const {loading} = useContext(AuthContext);
+  const {loading, theme} = useContext(AuthContext);
   
   useEffect(() => {
     fetch("https://learning-platform-website-server.vercel.app/course")
@@ -21,19 +21,19 @@ const Courses = () => {
     </div>
   }
   return (
-    <div className="lg:flex mx-20 align-middle my-12">
+    <div className="lg:flex justify-center align-middle my-12">
       <div>
         {courses.map((course) => (
           <Link
             key={course.id}
-            className="bg-black text-white my-3 p-5 w-64 rounded-md font-semibold text-center ml-7 block"
+            className={`${theme === "light" ? "bg-black text-white" : 'bg-white text-black'} my-3 p-5 w-64 rounded-md font-semibold text-center ml-7 block`}
             to={`/course/${course.id}`}
           >
             {course.name}
           </Link>
         ))}
       </div>
-      <div className="w-3/4 lg:mx-auto grid lg:grid-cols-3 md:grid-cols-1">
+      <div className="w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center">
         {courses.map((course) => (
           <Course key={course.id} course={course}></Course>
         ))}

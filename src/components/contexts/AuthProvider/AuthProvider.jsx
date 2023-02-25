@@ -13,7 +13,7 @@ export const AuthContext = createContext()
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [theme, setTheme] = useState("light");
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
@@ -26,7 +26,7 @@ const AuthProvider = ({children}) => {
 
     const googleSignIn = provider => {
         setLoading(true);
-        return signInWithPopup(auth, provider)
+        return signInWithPopup(auth, provider);
     }
 
     const githubSignIn = provider => {
@@ -55,7 +55,7 @@ const AuthProvider = ({children}) => {
 
 
 
-    const authInfo = {user, loading, createUser, googleSignIn, githubSignIn, logOut, signIn, updateUserProfile }
+    const authInfo = {user, loading,theme, setTheme, createUser, googleSignIn, githubSignIn, logOut, signIn, updateUserProfile }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
